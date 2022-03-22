@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getproductsData, sortProducts } from "../Redux/actions";
 
 export const Products = () => {
+  let navigate = useNavigate();
   const dispatch = useDispatch()
   const data = useSelector(state => state.products)
   const isLoading = useSelector(state => state.isLoading)
@@ -29,7 +31,7 @@ export const Products = () => {
         {/* map throught th products  list and display the results */}
         {data &&
           data.map((item) => {
-            return <div key={item.id} className={"product-card"}>
+            return <div key={item.id} className={"product-card"} onClick={() => navigate(`/products/${item.id}`)}>
               <img src={item.image}></img>
               <p>{item.title}</p>
               <p>{item.brand}</p>

@@ -5,6 +5,7 @@ import {
   PRODUCT_FAILURE,
   GET_ASC_ORDER,
   GET_DESC_ORDER,
+  GET_SINGLE_PRODUCT,
 } from "./actionTypes";
 // action for get products request
 const getProductsReq = (payload) => {
@@ -28,6 +29,10 @@ const getAscendingOrder = () => {
 };
 const getdescendingOrder = () => {
   return { type: GET_DESC_ORDER };
+};
+
+const getSIngleProductSuccess = (payload) => {
+  return { type: GET_SINGLE_PRODUCT, payload };
 };
 // thunk call to fetch products  list
 export const getproductsData = () => (dispatch) => {
@@ -59,4 +64,13 @@ export const sortProducts = (payload) => (dispatch) => {
   } else {
     dispatch(getdescendingOrder());
   }
+};
+
+export const getSingleProduct = (payload) => (dispatch) => {
+  dispatch(getProductsReq());
+  return axios
+    .get(`https://movie-fake-server.herokuapp.com/products/${payload}`)
+    .then((res) => res.data)
+    .then((res) => dispatch(getSIngleProductSuccess(res)))
+    .catch((e) => dispatch(getProductsFailure(e)));
 };

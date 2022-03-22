@@ -58,3 +58,13 @@
 .product-card > img {
   width: 100%;
 }
+
+.singleProduct {
+  width: 50%;
+  margin: auto;
+  line-height: 0.2;
+}
+
+.singleProduct > img {
+  width: 50%;
+}

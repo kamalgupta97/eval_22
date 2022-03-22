@@ -4,3 +4,5 @@ export const PRODUCT_FAILURE = "PRODUCT_FAILURE";
 
 export const GET_ASC_ORDER = "GET_ASC_ORDER";
 export const GET_DESC_ORDER = "GET_DESC_ORDER";
+
+export const GET_SINGLE_PRODUCT = "GET_SINGLE_PRODUCT";

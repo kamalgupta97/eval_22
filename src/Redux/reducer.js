@@ -4,12 +4,14 @@ import {
   PRODUCT_FAILURE,
   GET_ASC_ORDER,
   GET_DESC_ORDER,
+  GET_SINGLE_PRODUCT,
 } from "./actionTypes";
 
 const initState = {
   products: [],
   isLoading: false,
   isError: false,
+  singleProduct: {},
 };
 
 export const Reducer = (state = initState, { type, payload }) => {
@@ -29,6 +31,9 @@ export const Reducer = (state = initState, { type, payload }) => {
       let sortedProducts = state.products.sort((a, b) => b.price - a.price);
       console.log(sortedProducts, " [...sortedProducts]");
       return { ...state, isLoading: false, products: [...sortedProducts] };
+    }
+    case GET_SINGLE_PRODUCT: {
+      return { ...state, singleProduct: payload, isLoading: false };
     }
     default:
       return {
