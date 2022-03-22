@@ -1,19 +1,23 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getproductsData, sortProducts } from "../Redux/actions";
 
 export const Products = () => {
-  // to get all products list on component mounts
+  const dispatch = useDispatch()
+  const data = useSelector(state => state.products)
+  const isLoading = useSelector(state => state.isLoading)
+  const isError = useSelector(state => state.isError)
+
   useEffect(() => {
-    //   dispatch an action to the store
-    // dont make call here
-    // handle it as thunk call in actions.js
     dispatch(getproductsData())
   }, [dispatch]);
 
-  //    filter by genre
   const handleSort = (e) => {
-    // dispach filterby genre action to the store
+    let val = e.target.value
+
+    dispatch(sortProducts(val))
   };
-  return (
+  return isLoading ? <div>..Loading</div> : (
     <>
       <h2>Movies</h2>
       <select onChange={handleSort}>
@@ -24,8 +28,16 @@ export const Products = () => {
       <div className="products-list">
         {/* map throught th products  list and display the results */}
         {data &&
-          data.map(() => {
-            return <div>{/* display the results here */}</div>;
+          data.map((item) => {
+            return <div key={item.id} className={"product-card"}>
+              <img src={item.image}></img>
+              <p>{item.title}</p>
+              <p>{item.brand}</p>
+
+              <p>{item.category}</p>
+              <p>{item.price}</p>
+
+            </div>;
           })}
       </div>
     </>

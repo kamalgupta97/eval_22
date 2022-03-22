@@ -1,5 +1,7 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  width: 90%;
+  margin: auto;
 }
 
 .App-logo {
@@ -35,4 +37,24 @@
   to {
     transform: rotate(360deg);
   }
+}
+.products-list {
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+  gap: 5px;
+}
+.showmovies {
+  width: 100%;
+  margin: auto;
+}
+.product-card {
+  background-color: #282c34;
+  color: white;
+  padding: 2px;
+  text-align: center;
+  line-height: 0.2;
+  border-radius: 5px;
+}
+.product-card > img {
+  width: 100%;
 }
